@@ -24,7 +24,7 @@ jobs:
   steps:
   - task: VSBuild@1
     inputs:
-      solution: src/search/bingecommercesearch.sln
+      solution: src/search/bingcommercesearch.sln
       vsVersion: 'latest'
       configuration: 'Debug|Any CPU'
       clean: false
@@ -66,7 +66,7 @@ jobs:
   steps:
   - task: VSBuild@1
     inputs:
-      solution: src/ingestion/bingecommerceingestion.sln
+      solution: src/ingestion/bingcommerceingestion.sln
       vsVersion: 'latest'
       configuration: 'Debug|Any CPU'
       clean: false
