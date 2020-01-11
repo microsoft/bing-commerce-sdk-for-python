@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "bingcommerceingestion", "bingcommerceingestion.pyproj", "{8FF65161-ED48-4D42-9716-1780B07069E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AMD64 = Debug|AMD64
+		Debug|Any CPU = Debug|Any CPU
+		Release|AMD64 = Release|AMD64
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FF65161-ED48-4D42-9716-1780B07069E3}.Debug|AMD64.ActiveCfg = Debug|Any CPU
+		{8FF65161-ED48-4D42-9716-1780B07069E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF65161-ED48-4D42-9716-1780B07069E3}.Release|AMD64.ActiveCfg = Release|Any CPU
+		{8FF65161-ED48-4D42-9716-1780B07069E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7672AFE-AE9E-4FB2-AF76-04B50544220D}
+	EndGlobalSection
+EndGlobal

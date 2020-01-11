@@ -26,19 +26,18 @@ jobs:
     inputs:
       solution: src/search/bingcommercesearch.sln
       vsVersion: 'latest'
-      configuration: 'Debug|Any CPU'
-      clean: false
+      clean: true
   
   - task: UsePythonVersion@0
     displayName: 'Use Python Version'
     inputs:
       versionSpec: '$(python.version)'
 
-  - script: python -m pip install --ugrade pip setuptools wheel
+  - script: python -m pip install --upgrade pip setuptools wheel
     displayName: 'Install tools'
     workingDirectory: src\search
 
-  - script: pip install -i requirements.txt
+  - script: pip install -r requirements.txt
     displayName: 'Install requirements'
     workingDirectory: src\search
 
@@ -68,19 +67,18 @@ jobs:
     inputs:
       solution: src/ingestion/bingcommerceingestion.sln
       vsVersion: 'latest'
-      configuration: 'Debug|Any CPU'
-      clean: false
+      clean: true
   
   - task: UsePythonVersion@0
     displayName: 'Use Python Version'
     inputs:
       versionSpec: '$(python.version)'
 
-  - script: python -m pip install --ugrade pip setuptools wheel
+  - script: python -m pip install --upgrade pip setuptools wheel
     displayName: 'Install tools'
     workingDirectory: src\ingestion
 
-  - script: pip install -i requirements.txt
+  - script: pip install -r requirements.txt
     displayName: 'Install requirements'
     workingDirectory: src\ingestion
 
