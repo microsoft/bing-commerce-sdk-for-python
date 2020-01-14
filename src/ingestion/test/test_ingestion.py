@@ -10,7 +10,7 @@ except ImportError:
     pass
 import microsoft.bing.commerce.ingestion
 try:
-    from msrest.authentication import Authentication
+    from msrest.authentication import BasicTokenAuthentication
 except ImportError:
     pass
 
@@ -40,11 +40,10 @@ class Test_Ingestion(unittest.TestCase):
         self.TENANT_ID = os.environ['INGEST_TENANT']
 
     def tearDown(self):
-        creds = Authentication()
+        creds = BasicTokenAuthentication({ 'access_token': os.environ['INGEST_TOKEN'] })
         client = BingCommerceIngestion(creds)
 
         query_parameters = {}
-        query_parameters['appid'] = os.environ['INGEST_APPID']
         query_parameters['traffictype'] = 'test'
 
         all_indexes = client.get_all_indexes(self.TENANT_ID, query_parameters=query_parameters)
@@ -55,11 +54,10 @@ class Test_Ingestion(unittest.TestCase):
                 return
 
     def test_Index(self):
-        creds = Authentication()
+        creds = BasicTokenAuthentication({ 'access_token': os.environ['INGEST_TOKEN'] })
         client = BingCommerceIngestion(creds)
 
         query_parameters = {}
-        query_parameters['appid'] = os.environ['INGEST_APPID']
         query_parameters['traffictype'] = 'test'
 
         # Create Index
@@ -114,11 +112,10 @@ class Test_Ingestion(unittest.TestCase):
 
 
     def test_Push(self):
-        creds = Authentication()
+        creds = BasicTokenAuthentication({ 'access_token': os.environ['INGEST_TOKEN'] })
         client = BingCommerceIngestion(creds)
 
         query_parameters = {}
-        query_parameters['appid'] = os.environ['INGEST_APPID']
         query_parameters['traffictype'] = 'test'
 
         index_id = ensure_index(client, self.TENANT_ID, query_parameters)

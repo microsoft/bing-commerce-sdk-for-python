@@ -10,7 +10,7 @@ except ImportError:
     pass
 import microsoft.bing.commerce.search.operations
 try:
-    from msrest.authentication import Authentication
+    from msrest.authentication import BasicTokenAuthentication
 except ImportError:
     pass
 
@@ -18,7 +18,7 @@ import os
 
 class Test_Search(unittest.TestCase):
     def test_MatchAll(self):
-        creds = Authentication()
+        creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
         client = BingCommerceSearch(creds)
         tenant_id = os.environ['SEARCH_TENANT']
         index_id = os.environ['SEARCH_INDEX']
@@ -28,7 +28,6 @@ class Test_Search(unittest.TestCase):
             items = RequestItems(select = ['_itemId', 'name']))
 
         query_parameters = {}
-        query_parameters['appid'] = os.environ['SEARCH_APPID']
         query_parameters['traffictype'] = 'test'
 
         response = client.search.post(request, tenant_id, index_id, query_parameters)
