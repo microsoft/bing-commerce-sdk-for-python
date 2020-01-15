@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 
 # This is a temporary hack until the packages are installed in pip
 import sys
