@@ -7,7 +7,7 @@ sys.path.append("..\\src\\ingestion")
 
 from microsoft.bing.commerce.ingestion import BingCommerceIngestion
 from microsoft.bing.commerce.ingestion.models import IndexField, Index, IndexFieldType
-from msrest.authentication import Authentication
+from msrest.authentication import BasicTokenAuthentication
 
 from microsoft.bing.commerce.search import BingCommerceSearch
 from microsoft.bing.commerce.search.models import CommerceSearchPostRequest, RequestQuery, RequestItems, StringSetCondition, RequestDiscoverFacets
@@ -18,14 +18,14 @@ import json
 import os
 
 sample_index_name = 'SampleIndex'
-tenant_id = os.environ['SAMPLE_TENANT']
-app_id = os.environ['SAMPLE_APPID']
+tenant_id = os.environ['TENANT_ID']
+access_token = os.environ['ACCESS_TOKEN']
 
 def ensure_index(client):
 
     print('Trying to find the index with name : {0:s}.'.format(sample_index_name))
 
-    all_indexes = client.get_all_indexes(tenant_id, query_parameters={'appid' : app_id})
+    all_indexes = client.get_all_indexes(tenant_id)
 
     for index in all_indexes.indexes:
         if index.name == sample_index_name:
@@ -75,13 +75,13 @@ def ensure_index(client):
     return create_response.indexes[0].id
 
 def push_data(client, index_id, data):
-    push_response = client.push_data_update(data, tenant_id, index_id, notransform=True, query_parameters={'appid' : app_id})
+    push_response = client.push_data_update(data, tenant_id, index_id, notransform=True)
 
     return push_response.update_id
 
 def get_search(client, index_id):
 
-    response = client.search.get(tenant_id, index_id, q='Product', query_parameters={'appid' : app_id})
+    response = client.search.get('Product', tenant_id, index_id)
 
     return response.items.total_estimated_matches
 
@@ -102,7 +102,7 @@ def post_search(client, index_id):
         aggregations = [ RequestDiscoverFacets( name = "discovered facets" ) ]
     )
 
-    response = client.search.post(tenant_id, index_id, request, query_parameters={'appid' : app_id})
+    response = client.search.post(request, tenant_id, index_id)
 
     return response.items.total_estimated_matches
 
@@ -116,9 +116,9 @@ def to_csv(products):
 
 if __name__ == '__main__':
 
-    print( 'Starting the sample, with app id: {0:s}'.format(app_id))
+    print( 'Starting the sample, with access token: {0:s}'.format(access_token))
 
-    creds = Authentication()
+    creds = BasicTokenAuthentication({ 'access_token': access_token })
 
     print( 'Creating the ingestion client.')
     ingest_client = BingCommerceIngestion(creds)
