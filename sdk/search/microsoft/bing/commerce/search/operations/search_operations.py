@@ -111,7 +111,7 @@ class SearchOperations(object):
         :type tenant: str
         :param index:
         :type index: str
-        :param mkt: The market where the results come from. Thypically, `mkt`
+        :param mkt: The market where the results come from. Typically, `mkt`
          is the country where the user is making the request from.
         :type mkt: str
         :param setlang: The language to use for user interface strings. You

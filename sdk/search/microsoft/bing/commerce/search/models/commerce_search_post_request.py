@@ -14,7 +14,7 @@ from msrest.serialization import Model
 class CommerceSearchPostRequest(Model):
     """CommerceSearchPostRequest.
 
-    :param market: The market where the results come from. Thypically, `mkt`
+    :param market: The market where the results come from. Typically, `mkt`
      is the country where the user is making the request from.
     :type market: str
     :param client:
@@ -49,13 +49,13 @@ class CommerceSearchPostRequest(Model):
         'search_instance_id': {'key': 'searchInstanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, market: str=None, client=None, language: str=None, query=None, items=None, aggregations=None, debug: bool=False, search_instance_id: str="Default", **kwargs) -> None:
+    def __init__(self, **kwargs):
         super(CommerceSearchPostRequest, self).__init__(**kwargs)
-        self.market = market
-        self.client = client
-        self.language = language
-        self.query = query
-        self.items = items
-        self.aggregations = aggregations
-        self.debug = debug
-        self.search_instance_id = search_instance_id
+        self.market = kwargs.get('market', None)
+        self.client = kwargs.get('client', None)
+        self.language = kwargs.get('language', None)
+        self.query = kwargs.get('query', None)
+        self.items = kwargs.get('items', None)
+        self.aggregations = kwargs.get('aggregations', None)
+        self.debug = kwargs.get('debug', False)
+        self.search_instance_id = kwargs.get('search_instance_id', "Default")
