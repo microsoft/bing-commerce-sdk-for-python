@@ -16,23 +16,11 @@ class ResponseCategoryRefinement(ResponseStringRefinement):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param errors: A list of errors that happened to the task, if any.
-    :type errors: list[~microsoft.bing.commerce.search.models.ResponseError]
-    :param debug:
-    :type debug:
-     list[~microsoft.bing.commerce.search.models.ResponseDebugInfo]
+    :param estimated_count: An estimate of the number of items in this
+     refinement.
+    :type estimated_count: long
     :param _type: Required. Constant filled by server.
     :type _type: str
-    :param name: The aggregation name as defined in the requset.
-    :type name: str
-    :param estimated_count: An estimated count of items in this aggregation.
-    :type estimated_count: long
-    :param aggregations: The list of child aggregations, if any.
-    :type aggregations:
-     list[~microsoft.bing.commerce.search.models.ResponseAggregation]
-    :param label: The label to use for the aggregation, that you can use to
-     render your UI.
-    :type label: str
     :param value: The actual filter value used to filter the list of items.
     :type value: str
     :param refinements: A list of child category refinements.
@@ -45,18 +33,13 @@ class ResponseCategoryRefinement(ResponseStringRefinement):
     }
 
     _attribute_map = {
-        'errors': {'key': 'errors', 'type': '[ResponseError]'},
-        'debug': {'key': 'debug', 'type': '[ResponseDebugInfo]'},
-        '_type': {'key': '_type', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
         'estimated_count': {'key': 'estimatedCount', 'type': 'long'},
-        'aggregations': {'key': 'aggregations', 'type': '[ResponseAggregation]'},
-        'label': {'key': 'label', 'type': 'str'},
+        '_type': {'key': '_type', 'type': 'str'},
         'value': {'key': 'value', 'type': 'str'},
         'refinements': {'key': 'refinements', 'type': '[ResponseCategoryRefinement]'},
     }
 
-    def __init__(self, *, errors=None, debug=None, name: str=None, estimated_count: int=None, aggregations=None, label: str=None, value: str=None, refinements=None, **kwargs) -> None:
-        super(ResponseCategoryRefinement, self).__init__(errors=errors, debug=debug, name=name, estimated_count=estimated_count, aggregations=aggregations, label=label, value=value, **kwargs)
+    def __init__(self, *, estimated_count: int=None, value: str=None, refinements=None, **kwargs) -> None:
+        super(ResponseCategoryRefinement, self).__init__(estimated_count=estimated_count, value=value, **kwargs)
         self.refinements = refinements
         self._type = 'CategoryRefinement'

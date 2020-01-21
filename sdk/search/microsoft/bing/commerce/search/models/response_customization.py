@@ -33,8 +33,7 @@ class ResponseCustomization(ResponseTask):
     :param filter: The filters applied to the search result.
     :type filter: ~microsoft.bing.commerce.search.models.ConditionBase
     :param boosts: The boost expressions applied to the search result.
-    :type boosts:
-     list[~microsoft.bing.commerce.search.models.ResponseBoostExpression]
+    :type boosts: list[~microsoft.bing.commerce.search.models.BoostExpression]
     """
 
     _validation = {
@@ -49,7 +48,7 @@ class ResponseCustomization(ResponseTask):
         'synonyms': {'key': 'synonyms', 'type': '[Synonym]'},
         'rules': {'key': 'rules', 'type': '[str]'},
         'filter': {'key': 'filter', 'type': 'ConditionBase'},
-        'boosts': {'key': 'boosts', 'type': '[ResponseBoostExpression]'},
+        'boosts': {'key': 'boosts', 'type': '[BoostExpression]'},
     }
 
     def __init__(self, **kwargs):

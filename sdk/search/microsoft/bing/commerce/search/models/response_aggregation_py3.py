@@ -16,7 +16,7 @@ class ResponseAggregation(ResponseTask):
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: ResponseFilter, ResponseDiscoveredFacets,
-    ResponseRefinementBase, ResponseFieldAggregationBase
+    ResponseFieldAggregationBase
 
     All required parameters must be populated in order to send to Azure.
 
@@ -50,7 +50,7 @@ class ResponseAggregation(ResponseTask):
     }
 
     _subtype_map = {
-        '_type': {'Filter': 'ResponseFilter', 'DiscoveredFacets': 'ResponseDiscoveredFacets', 'Response.RefinementBase': 'ResponseRefinementBase', 'Response.FieldAggregationBase': 'ResponseFieldAggregationBase'}
+        '_type': {'Filter': 'ResponseFilter', 'DiscoveredFacets': 'ResponseDiscoveredFacets', 'Response.FieldAggregationBase': 'ResponseFieldAggregationBase'}
     }
 
     def __init__(self, *, errors=None, debug=None, name: str=None, estimated_count: int=None, aggregations=None, **kwargs) -> None:

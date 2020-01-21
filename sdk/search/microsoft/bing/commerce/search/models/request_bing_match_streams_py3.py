@@ -22,8 +22,6 @@ class RequestBingMatchStreams(RequestMatch):
     :type value: str
     :param include:
     :type include: list[str]
-    :param exclude:
-    :type exclude: list[str]
     """
 
     _validation = {
@@ -34,11 +32,9 @@ class RequestBingMatchStreams(RequestMatch):
         '_type': {'key': '_type', 'type': 'str'},
         'value': {'key': 'value', 'type': 'str'},
         'include': {'key': 'include', 'type': '[str]'},
-        'exclude': {'key': 'exclude', 'type': '[str]'},
     }
 
-    def __init__(self, *, value: str=None, include=None, exclude=None, **kwargs) -> None:
+    def __init__(self, *, value: str=None, include=None, **kwargs) -> None:
         super(RequestBingMatchStreams, self).__init__(value=value, **kwargs)
         self.include = include
-        self.exclude = exclude
         self._type = 'MatchStreams'

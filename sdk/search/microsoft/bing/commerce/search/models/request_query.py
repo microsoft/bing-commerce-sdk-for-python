@@ -26,8 +26,7 @@ class RequestQuery(Model):
      items if no match is specified.
     :type filter: ~microsoft.bing.commerce.search.models.ConditionBase
     :param boosts: The set of boosts to apply to the result set.
-    :type boosts:
-     list[~microsoft.bing.commerce.search.models.RequestBoostExpression]
+    :type boosts: list[~microsoft.bing.commerce.search.models.BoostExpression]
     :param alteration: A boolean flag to enable or disable query alteration.
      Default value: True .
     :type alteration: bool
@@ -35,19 +34,15 @@ class RequestQuery(Model):
      to request query. The applied synonyms are used for both text-matching and
      result-ranking stages of search.
     :type synonyms: list[~microsoft.bing.commerce.search.models.Synonym]
-    :param exclude_business_rules: Business rule ids to skip applying from
-     request search instance.
-    :type exclude_business_rules: list[str]
     """
 
     _attribute_map = {
         'match_all': {'key': 'matchAll', 'type': 'str'},
         'value': {'key': 'value', 'type': 'RequestQueryClauseBase'},
         'filter': {'key': 'filter', 'type': 'ConditionBase'},
-        'boosts': {'key': 'boosts', 'type': '[RequestBoostExpression]'},
+        'boosts': {'key': 'boosts', 'type': '[BoostExpression]'},
         'alteration': {'key': 'alteration', 'type': 'bool'},
         'synonyms': {'key': 'synonyms', 'type': '[Synonym]'},
-        'exclude_business_rules': {'key': 'excludeBusinessRules', 'type': '[str]'},
     }
 
     def __init__(self, **kwargs):
@@ -58,4 +53,3 @@ class RequestQuery(Model):
         self.boosts = kwargs.get('boosts', None)
         self.alteration = kwargs.get('alteration', True)
         self.synonyms = kwargs.get('synonyms', None)
-        self.exclude_business_rules = kwargs.get('exclude_business_rules', None)

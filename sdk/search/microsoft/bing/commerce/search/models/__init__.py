@@ -13,7 +13,7 @@ try:
     from .request_client_py3 import RequestClient
     from .request_query_clause_base_py3 import RequestQueryClauseBase
     from .condition_base_py3 import ConditionBase
-    from .request_boost_expression_py3 import RequestBoostExpression
+    from .boost_expression_py3 import BoostExpression
     from .synonym_py3 import Synonym
     from .request_query_py3 import RequestQuery
     from .request_items_py3 import RequestItems
@@ -48,7 +48,6 @@ try:
     from .response_query_context_py3 import ResponseQueryContext
     from .response_items_base_py3 import ResponseItemsBase
     from .response_aggregation_py3 import ResponseAggregation
-    from .response_boost_expression_py3 import ResponseBoostExpression
     from .response_customization_py3 import ResponseCustomization
     from .commerce_search_response_py3 import CommerceSearchResponse
     from .response_error_py3 import ResponseError
@@ -60,27 +59,27 @@ try:
     from .response_items_py3 import ResponseItems
     from .response_filter_py3 import ResponseFilter
     from .response_discovered_facets_py3 import ResponseDiscoveredFacets
-    from .response_refinement_base_py3 import ResponseRefinementBase
-    from .response_range_refinement_py3 import ResponseRangeRefinement
-    from .response_number_refinement_py3 import ResponseNumberRefinement
-    from .response_string_refinement_py3 import ResponseStringRefinement
-    from .response_category_refinement_py3 import ResponseCategoryRefinement
-    from .response_bool_refinement_py3 import ResponseBoolRefinement
     from .response_field_aggregation_base_py3 import ResponseFieldAggregationBase
     from .response_facet_base_py3 import ResponseFacetBase
+    from .response_number_refinement_py3 import ResponseNumberRefinement
     from .response_number_facet_py3 import ResponseNumberFacet
+    from .response_string_refinement_py3 import ResponseStringRefinement
     from .response_string_facet_py3 import ResponseStringFacet
+    from .response_category_refinement_py3 import ResponseCategoryRefinement
     from .response_category_facet_py3 import ResponseCategoryFacet
+    from .response_bool_refinement_py3 import ResponseBoolRefinement
     from .response_bool_facet_py3 import ResponseBoolFacet
+    from .response_range_refinement_py3 import ResponseRangeRefinement
     from .response_range_facet_py3 import ResponseRangeFacet
     from .response_min_py3 import ResponseMin
     from .response_max_py3 import ResponseMax
+    from .response_refinement_base_py3 import ResponseRefinementBase
 except (SyntaxError, ImportError):
     from .request_client_id import RequestClientId
     from .request_client import RequestClient
     from .request_query_clause_base import RequestQueryClauseBase
     from .condition_base import ConditionBase
-    from .request_boost_expression import RequestBoostExpression
+    from .boost_expression import BoostExpression
     from .synonym import Synonym
     from .request_query import RequestQuery
     from .request_items import RequestItems
@@ -115,7 +114,6 @@ except (SyntaxError, ImportError):
     from .response_query_context import ResponseQueryContext
     from .response_items_base import ResponseItemsBase
     from .response_aggregation import ResponseAggregation
-    from .response_boost_expression import ResponseBoostExpression
     from .response_customization import ResponseCustomization
     from .commerce_search_response import CommerceSearchResponse
     from .response_error import ResponseError
@@ -127,21 +125,21 @@ except (SyntaxError, ImportError):
     from .response_items import ResponseItems
     from .response_filter import ResponseFilter
     from .response_discovered_facets import ResponseDiscoveredFacets
-    from .response_refinement_base import ResponseRefinementBase
-    from .response_range_refinement import ResponseRangeRefinement
-    from .response_number_refinement import ResponseNumberRefinement
-    from .response_string_refinement import ResponseStringRefinement
-    from .response_category_refinement import ResponseCategoryRefinement
-    from .response_bool_refinement import ResponseBoolRefinement
     from .response_field_aggregation_base import ResponseFieldAggregationBase
     from .response_facet_base import ResponseFacetBase
+    from .response_number_refinement import ResponseNumberRefinement
     from .response_number_facet import ResponseNumberFacet
+    from .response_string_refinement import ResponseStringRefinement
     from .response_string_facet import ResponseStringFacet
+    from .response_category_refinement import ResponseCategoryRefinement
     from .response_category_facet import ResponseCategoryFacet
+    from .response_bool_refinement import ResponseBoolRefinement
     from .response_bool_facet import ResponseBoolFacet
+    from .response_range_refinement import ResponseRangeRefinement
     from .response_range_facet import ResponseRangeFacet
     from .response_min import ResponseMin
     from .response_max import ResponseMax
+    from .response_refinement_base import ResponseRefinementBase
 from .bing_commerce_search_enums import (
     LogicalOperator,
     EquivalenceOperator,
@@ -155,7 +153,7 @@ __all__ = [
     'RequestClient',
     'RequestQueryClauseBase',
     'ConditionBase',
-    'RequestBoostExpression',
+    'BoostExpression',
     'Synonym',
     'RequestQuery',
     'RequestItems',
@@ -190,7 +188,6 @@ __all__ = [
     'ResponseQueryContext',
     'ResponseItemsBase',
     'ResponseAggregation',
-    'ResponseBoostExpression',
     'ResponseCustomization',
     'CommerceSearchResponse',
     'ResponseError',
@@ -202,21 +199,21 @@ __all__ = [
     'ResponseItems',
     'ResponseFilter',
     'ResponseDiscoveredFacets',
-    'ResponseRefinementBase',
-    'ResponseRangeRefinement',
-    'ResponseNumberRefinement',
-    'ResponseStringRefinement',
-    'ResponseCategoryRefinement',
-    'ResponseBoolRefinement',
     'ResponseFieldAggregationBase',
     'ResponseFacetBase',
+    'ResponseNumberRefinement',
     'ResponseNumberFacet',
+    'ResponseStringRefinement',
     'ResponseStringFacet',
+    'ResponseCategoryRefinement',
     'ResponseCategoryFacet',
+    'ResponseBoolRefinement',
     'ResponseBoolFacet',
+    'ResponseRangeRefinement',
     'ResponseRangeFacet',
     'ResponseMin',
     'ResponseMax',
+    'ResponseRefinementBase',
     'LogicalOperator',
     'EquivalenceOperator',
     'ComparisonOperator',
