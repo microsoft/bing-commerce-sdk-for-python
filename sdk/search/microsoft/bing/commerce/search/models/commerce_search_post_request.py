@@ -14,7 +14,7 @@ from msrest.serialization import Model
 class CommerceSearchPostRequest(Model):
     """CommerceSearchPostRequest.
 
-    :param market: The market where the results come from. Thypically, `mkt`
+    :param market: The market where the results come from. Typically, `mkt`
      is the country where the user is making the request from.
     :type market: str
     :param client:
