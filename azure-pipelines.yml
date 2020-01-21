@@ -24,7 +24,7 @@ jobs:
   steps:
   - task: VSBuild@1
     inputs:
-      solution: src/search/bingcommercesearch.sln
+      solution: sdk/search/bingcommercesearch.sln
       vsVersion: 'latest'
       clean: true
   
@@ -35,17 +35,17 @@ jobs:
 
   - script: python -m pip install --upgrade pip setuptools wheel
     displayName: 'Install tools'
-    workingDirectory: src\search
+    workingDirectory: sdk/search
 
   - script: pip install -r requirements.txt
     displayName: 'Install requirements'
-    workingDirectory: src\search
+    workingDirectory: sdk/search
 
   - script: |
       pip install pytest
       pytest test\test_search.py --doctest-modules --junitxml=junit/test-results.xml
     displayName: 'Test with pytest'
-    workingDirectory: src\search
+    workingDirectory: sdk/search
 
 
 - job: 'ingestion'
@@ -65,7 +65,7 @@ jobs:
   steps:
   - task: VSBuild@1
     inputs:
-      solution: src/ingestion/bingcommerceingestion.sln
+      solution: sdk/ingestion/bingcommerceingestion.sln
       vsVersion: 'latest'
       clean: true
   
@@ -76,14 +76,14 @@ jobs:
 
   - script: python -m pip install --upgrade pip setuptools wheel
     displayName: 'Install tools'
-    workingDirectory: src\ingestion
+    workingDirectory: sdk/ingestion
 
   - script: pip install -r requirements.txt
     displayName: 'Install requirements'
-    workingDirectory: src\ingestion
+    workingDirectory: sdk/ingestion
 
   - script: |
       pip install pytest
       pytest test\test_ingestion.py --doctest-modules --junitxml=junit/test-results.xml
     displayName: 'Test with pytest'
-    workingDirectory: src\ingestion
+    workingDirectory: sdk/ingestion

@@ -4,8 +4,8 @@
 
 # This is a temporary hack until the packages are installed in pip
 import sys
-sys.path.append("..\\src\\search")
-sys.path.append("..\\src\\ingestion")
+sys.path.append("..\\sdk\\search")
+sys.path.append("..\\sdk\\ingestion")
 #end hack
 
 from microsoft.bing.commerce.ingestion import BingCommerceIngestion
