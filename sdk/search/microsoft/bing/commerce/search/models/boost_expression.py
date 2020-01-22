@@ -11,13 +11,14 @@
 from msrest.serialization import Model
 
 
-class ResponseBoostExpression(Model):
-    """Defines an expression that modifies the ranking score of results based on a
-    condition.
+class BoostExpression(Model):
+    """An expression that modifies the ranking score for item search results
+    satisfying a condition.
 
-    :param condition: The condition that triggered a boost in ranking score.
+    :param condition: The condition that items must satisfy to be boosted.
     :type condition: ~microsoft.bing.commerce.search.models.ConditionBase
-    :param boost: The magnitude of a boost applied.
+    :param boost: The value to add to the ranking score. The range is
+     -10,000,000 to 10,000,000.
     :type boost: float
     """
 
@@ -26,7 +27,7 @@ class ResponseBoostExpression(Model):
         'boost': {'key': 'boost', 'type': 'float'},
     }
 
-    def __init__(self, *, condition=None, boost: float=None, **kwargs) -> None:
-        super(ResponseBoostExpression, self).__init__(**kwargs)
-        self.condition = condition
-        self.boost = boost
+    def __init__(self, **kwargs):
+        super(BoostExpression, self).__init__(**kwargs)
+        self.condition = kwargs.get('condition', None)
+        self.boost = kwargs.get('boost', None)

@@ -8,35 +8,23 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .response_aggregation import ResponseAggregation
+from msrest.serialization import Model
 
 
-class ResponseRefinementBase(ResponseAggregation):
-    """Defines the abstract base type for refinement based aggregation.
+class ResponseRefinementBase(Model):
+    """The abstract base type for a refinement on a facet.
 
     You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: ResponseRangeRefinement, ResponseNumberRefinement,
-    ResponseStringRefinement, ResponseBoolRefinement
+    sub-classes are: ResponseNumberRefinement, ResponseStringRefinement,
+    ResponseBoolRefinement, ResponseRangeRefinement
 
     All required parameters must be populated in order to send to Azure.
 
-    :param errors: A list of errors that happened to the task, if any.
-    :type errors: list[~microsoft.bing.commerce.search.models.ResponseError]
-    :param debug:
-    :type debug:
-     list[~microsoft.bing.commerce.search.models.ResponseDebugInfo]
+    :param estimated_count: An estimate of the number of items in this
+     refinement.
+    :type estimated_count: long
     :param _type: Required. Constant filled by server.
     :type _type: str
-    :param name: The aggregation name as defined in the requset.
-    :type name: str
-    :param estimated_count: An estimated count of items in this aggregation.
-    :type estimated_count: long
-    :param aggregations: The list of child aggregations, if any.
-    :type aggregations:
-     list[~microsoft.bing.commerce.search.models.ResponseAggregation]
-    :param label: The label to use for the aggregation, that you can use to
-     render your UI.
-    :type label: str
     """
 
     _validation = {
@@ -44,20 +32,15 @@ class ResponseRefinementBase(ResponseAggregation):
     }
 
     _attribute_map = {
-        'errors': {'key': 'errors', 'type': '[ResponseError]'},
-        'debug': {'key': 'debug', 'type': '[ResponseDebugInfo]'},
-        '_type': {'key': '_type', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
         'estimated_count': {'key': 'estimatedCount', 'type': 'long'},
-        'aggregations': {'key': 'aggregations', 'type': '[ResponseAggregation]'},
-        'label': {'key': 'label', 'type': 'str'},
+        '_type': {'key': '_type', 'type': 'str'},
     }
 
     _subtype_map = {
-        '_type': {'RangeRefinement': 'ResponseRangeRefinement', 'NumberRefinement': 'ResponseNumberRefinement', 'StringRefinement': 'ResponseStringRefinement', 'BoolRefinement': 'ResponseBoolRefinement'}
+        '_type': {'NumberRefinement': 'ResponseNumberRefinement', 'StringRefinement': 'ResponseStringRefinement', 'BoolRefinement': 'ResponseBoolRefinement', 'RangeRefinement': 'ResponseRangeRefinement'}
     }
 
     def __init__(self, **kwargs):
         super(ResponseRefinementBase, self).__init__(**kwargs)
-        self.label = kwargs.get('label', None)
-        self._type = 'Response.RefinementBase'
+        self.estimated_count = kwargs.get('estimated_count', None)
+        self._type = None

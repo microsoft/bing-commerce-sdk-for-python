@@ -12,7 +12,7 @@ from msrest.serialization import Model
 
 
 class ConditionBase(Model):
-    """The condition that triggered a boost in ranking score.
+    """The condition that items must satisfy to be boosted.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: ConditionBlock, FieldConditionBase, GeoCondition

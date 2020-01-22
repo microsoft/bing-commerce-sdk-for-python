@@ -26,8 +26,7 @@ class RequestQuery(Model):
      items if no match is specified.
     :type filter: ~microsoft.bing.commerce.search.models.ConditionBase
     :param boosts: The set of boosts to apply to the result set.
-    :type boosts:
-     list[~microsoft.bing.commerce.search.models.RequestBoostExpression]
+    :type boosts: list[~microsoft.bing.commerce.search.models.BoostExpression]
     :param alteration: A boolean flag to enable or disable query alteration.
      Default value: True .
     :type alteration: bool
@@ -35,22 +34,18 @@ class RequestQuery(Model):
      to request query. The applied synonyms are used for both text-matching and
      result-ranking stages of search.
     :type synonyms: list[~microsoft.bing.commerce.search.models.Synonym]
-    :param exclude_business_rules: Business rule ids to skip applying from
-     request search instance.
-    :type exclude_business_rules: list[str]
     """
 
     _attribute_map = {
         'match_all': {'key': 'matchAll', 'type': 'str'},
         'value': {'key': 'value', 'type': 'RequestQueryClauseBase'},
         'filter': {'key': 'filter', 'type': 'ConditionBase'},
-        'boosts': {'key': 'boosts', 'type': '[RequestBoostExpression]'},
+        'boosts': {'key': 'boosts', 'type': '[BoostExpression]'},
         'alteration': {'key': 'alteration', 'type': 'bool'},
         'synonyms': {'key': 'synonyms', 'type': '[Synonym]'},
-        'exclude_business_rules': {'key': 'excludeBusinessRules', 'type': '[str]'},
     }
 
-    def __init__(self, *, match_all: str=None, value=None, filter=None, boosts=None, alteration: bool=True, synonyms=None, exclude_business_rules=None, **kwargs) -> None:
+    def __init__(self, *, match_all: str=None, value=None, filter=None, boosts=None, alteration: bool=True, synonyms=None, **kwargs) -> None:
         super(RequestQuery, self).__init__(**kwargs)
         self.match_all = match_all
         self.value = value
@@ -58,4 +53,3 @@ class RequestQuery(Model):
         self.boosts = boosts
         self.alteration = alteration
         self.synonyms = synonyms
-        self.exclude_business_rules = exclude_business_rules
