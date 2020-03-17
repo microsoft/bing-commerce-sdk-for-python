@@ -4,15 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8ff65161-ed48-4d42-9716-1780b07069e3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>microsoft\ProductSearchSample.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>bingcommercesearch</Name>
     <RootNamespace>microsoft.bing.commerce.search</RootNamespace>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
     <TestFramework>unittest</TestFramework>
     <UnitTestPattern>test*.py</UnitTestPattern>
     <UnitTestRootDirectory>.\test</UnitTestRootDirectory>
@@ -178,10 +177,22 @@
     <Compile Include="microsoft\bing\commerce\search\version.py" />
     <Compile Include="microsoft\bing\commerce\search\__init__.py" />
     <Compile Include="microsoft\bing\__init__.py" />
+    <Compile Include="microsoft\ProductSearchSample.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="microsoft\__init__.py" />
     <Compile Include="test\test_search.py" />
   </ItemGroup>
   <ItemGroup>
+    <Interpreter Include="env1\">
+      <Id>env1</Id>
+      <Version>3.7</Version>
+      <Description>env1 (Python 3.7 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
     <Interpreter Include="env\">
       <Id>env</Id>
       <Version>2.7</Version>
