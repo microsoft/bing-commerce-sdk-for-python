@@ -58,7 +58,7 @@ def Filter():
         index_id = os.environ[SEARCH_INDEX]
 
         request = CommerceSearchPostRequest(
-        query = RequestQuery(match_all = 'laptop',filter=ConditionBase(Field='brand',value='Microsoft',OperatorProperty=EquivalenceOperator.ne)), 
+        query = RequestQuery(match_all = 'laptop',filter=ConditionBase(field='brand',value='Microsoft',OperatorProperty=EquivalenceOperator.ne)), 
         items = RequestItems(select = ['_itemId', 'brand','title']))
 
         query_parameters = {}
@@ -78,7 +78,7 @@ def FilterConditionBlock():
         index_id = os.environ[SEARCH_INDEX]
     
         request = CommerceSearchPostRequest(
-        query = RequestQuery(match_all = 'laptop',filter=ConditionBlock(OperatorProperty=LogicalOperator.or_enum, ConditionBase=StringCondition[StringCondition(Field='brand',value='HP'),StringCondition(Field='brand',value='HP')])), 
+        query = RequestQuery(match_all = 'laptop',filter=ConditionBlock(OperatorProperty=LogicalOperator.or_enum, ConditionBase=StringCondition[StringCondition(Field='brand',value='HP'),StringCondition(field='brand',value='HP')])), 
         items = RequestItems(select = ['title','shortDescription']))
         
         query_parameters = {}
