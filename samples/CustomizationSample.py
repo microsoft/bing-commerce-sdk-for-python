@@ -22,36 +22,17 @@ def CreateSearchInstance():
     json_data = json.dumps(request)
     search_url = 'https://commerce.bing.com/api/customization/v1/searchinstance/{0}/indexes/{1}'
     url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
+    #headers = {'Content-type': 'content_type_value'}
     response=requests.post(url,data=json_data,headers=headers)
     response.raise_for_status()
 
-def Delete():
+def DeleteSearchInstance():
     search_url = 'https://commerce.bing.com/api/customization/v1/searchinstance/{0}/indexes/{1}?searchinstanceid={2}'
     url=search_url.format(tenantId,indexId,instanceId)
     headers = {'Authorization':'Bearer '+ subscription_key}
     response = requests.delete(url, headers=headers)
     response.raise_for_status()
-
-def GetQUConfig():
-    search_url = 'https://commerce.bing.com/api/customization/v1/qu/{0}/indexes/{1}searchinstanceid={2}'
-    url=search_url.format(tenantId,indexId,instanceId)
-    headers = {'Bearer': subscription_key}
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    search_results = response.json()
-
-def UpdateQUConfig():
-    search_url = 'https://commerce.bing.com/api/customization/v1/qu/{0}/indexes/{1}?searchinstanceid={2}'
-    url=search_url.format(tenantId,indexId,instanceId)
-    request={'searchinstanceId':'instance3',
-              'query':'laptop',
-              'qudisabled':True}
-    json_data = json.dumps(request)
-    headers = {'Authorization':'Bearer '+ subscription_key}
-    response = requests.post(url,json_data, headers=headers)
-    response.raise_for_status()
-    search_results = response.json()
 
 
 def GetAllRule():
@@ -78,15 +59,23 @@ def DeleteRule():
     response.raise_for_status()
     search_results = response.json()
 
+def GetSynonyms():
+    search_url = 'https://commerce.bing.com/api/customization/v1/synonym/{0}/indexes/{1}?searchinstanceid={2}'
+    url=search_url.format(tenantId,indexId,instanceId)
+    headers = {'Authorization':'Bearer '+ subscription_key}
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    search_results = response.json()
+
 def UpdateSynonyms():
     search_url = 'https://commerce.bing.com/api/customization/v1/synonym/{0}/indexes/{1}'
     url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
-    request = {'searchinstanceId': 'instance3',
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
+    request = {'searchinstanceId': instanceId,
               'synonymId': 'outerwear',
               'synonyms': ['coat', 'jacket', 'suit']}
     json_data = json.dumps(request)
-    response=requests.put(url, data=json_data, headers= headers)
+    response=requests.post(url, data=json_data, headers= headers)
     response.raise_for_status()
 
 def DeleteSynonyms():
@@ -108,13 +97,13 @@ def GetCondition(type,field,value,op=None):
 def UpdateRedirects():
     search_url = 'https://commerce.bing.com/api/customization/v1/redirect/{0}/indexes/{1}'
     url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
-    request = {'searchinstanceId': 'BlackFridaySettings',
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
+    request = {'searchinstanceId': instanceId,
               'RedirectId': 'ClothingRedirect',
-              'SearchRequestCondition':GetCondition('StringCondition','query',['men shirts']),
+              'SearchRequestCondition':GetCondition('StringCondition','query','men shirts'),
               'RedirectUrl':'https://www.contoso.com/menshirts'}
     json_data=json.dumps(request)
-    response=requests.put(url, data=json_data, headers=headers)
+    response=requests.post(url, data=json_data, headers=headers)
     response.raise_for_status()
 
 def GetRedirect():
@@ -148,5 +137,5 @@ def CreateUpdateARulePost():
               'StartTimeUtc':'20200101040000',
               'EndTimeUtc':'20201231180000'}
     json_data=json.dumps(request)
-    response=requests.put(url,data=json_data,headers=headers)
+    response=requests.put(url,data=json_data,headers=headers, verify=False)
     response.raise_for_status()
