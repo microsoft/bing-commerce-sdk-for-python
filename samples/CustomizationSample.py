@@ -1,6 +1,6 @@
-subscription_key = 'YOUR-SUBSCRIPTION-KEY'
-tenantId='tenantID'
-indexId='indexId'
+subscription_key = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjRmZGI5N2ZhLWQyYWItNDY1Mi1iMWE0LWM3Y2E3YTBhNDJmNSJ9.eyJhdWQiOiIxZTE0MmJhOC1kNzU1LTQ0ZDAtOGFlYS03YjJiNTI0NjZhMTMiLCJub25jZSI6IjYyM2Q1OWQzLTMxZDMtMDZlYy0xZGVkLTNkYjc4OGYyMGQxYyIsImhhc0FjY2Vzc1RvQWxsSW5zdGFuY2VzIjp0cnVlLCJpbnN0YW5jZXMiOiIiLCJzY3AiOiJBZG1pbi5FbnZpcm9ubWVudC5SZWFkV3JpdGUgQWRtaW4uUm9sZU1hbmFnZW1lbnQuUmVhZFdyaXRlIEFkbWluLlRva2VuLkNyZWF0ZSBTZWFyY2guQXV0b3N1Z2dlc3QuUmVhZFdyaXRlIFNlYXJjaC5JbmRleC5SZWFkV3JpdGUgU2VhcmNoLkN1c3RvbWl6YXRpb24uUmVhZFdyaXRlIiwidGlkcyI6WyI5MjQ0OTQxMi03MzFjLTQ5OGQtZDRhZi0wOGQ3NjY3MzczZjIiXSwiYXBwaWQiOiJjNzM4YWUwYTFhNGQxMDM2MjIxMzBjZGY1MjU4MTFkNzBhMDMyOWRlIiwiaWF0IjoxNTg2Mjg3NTI5LCJleHAiOjE1OTM1NzU5MDksInZlciI6IjEuMCJ9.pqptNx_3d3RbXMu4LKSiNelJd9tBWPAVFcL5iGLWgqTVAo21NAoNYQ_zelxz9sCYtkVoy97rl--nooxvXHDdcWKVmz_jqwOF2Ekmtbjk2oZBK_P8l-GlcQ2W5hZ7wBUiBtfcB22zGPQnTgrkxiWL5COz86I7tME_VhepJP3BXYXIV8AFpTL51J-mxec2dOJEa5s88ZrrCPG4PXCYkgs6OSJ2JGkWN80BWWqD6z7iKDe8jTAyhlebc0bhPISqSICb27SUu9rmlrWmVr49VWMMFPiJ1mUR2VPN13SLl112trcOKW2G-VZkH2pLQ8xVX8yaLVP7Jlh1bb52kr980J0rnQ'
+tenantId='92449412-731c-498d-d4af-08d7667373f2'
+indexId='12744db4-994e-4676-ab56-79565c8c050f'
 instanceId='BlackFridaySettings'
 ruleId='ruleId'
 synonymId='synonymsId'
@@ -23,7 +23,6 @@ def CreateSearchInstance():
     search_url = 'https://commerce.bing.com/api/customization/v1/searchinstance/{0}/indexes/{1}'
     url=search_url.format(tenantId,indexId)
     headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
-    #headers = {'Content-type': 'content_type_value'}
     response=requests.post(url,data=json_data,headers=headers)
     response.raise_for_status()
 
@@ -123,19 +122,19 @@ def DeleteRedirect():
     search_results = response.json()
 
 def CreateUpdateARulePost():
-    search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rules/{0}/indexes/{1}'
-    url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
-    request = {'searchinstanceId': 'BlackFridaySettings',
+    search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rule/{0}/indexes/{1}'
+    url = search_url.format(tenantId,indexId)
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
+    request = {'searchinstanceId': instanceId,
               'Rule': 'ruleclothing',
               'Enabled':True,
               'Description':'Black Friday clothing rule',
-              'SearchRequestCondition':GetCondition('StringCondition','query',['shirts','coats']),
+              'SearchRequestCondition':GetCondition('StringSetCondition','query',['shirts','coats','*']),
               'Banner':{'type':'PlainText','value':'Get 15% off Black Friday deals'},
-              'boosts':{'boost':500,'conditions':[GetCondition('StringCondition','brand','Microsoft')]},
-              'filter':{'_type':'ConditionBlock','conditions':GetCondition('StringCondition','brand','Contoso','Ne')},
+              'boosts':[{'boost':500,'condition':GetCondition('StringCondition','brand','Fabrikam')}],
+              'filter':{'_type':'ConditionBlock','conditions':[GetCondition('StringCondition','brand','Contoso','Ne')]},
               'StartTimeUtc':'20200101040000',
               'EndTimeUtc':'20201231180000'}
     json_data=json.dumps(request)
-    response=requests.put(url,data=json_data,headers=headers, verify=False)
+    response=requests.post(url,data=json_data,headers=headers, verify=False)
     response.raise_for_status()
