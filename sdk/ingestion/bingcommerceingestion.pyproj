@@ -4,8 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8ff65161-ed48-4d42-9716-1780b07069e3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>microsoft\CustomizationSample.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -70,6 +69,7 @@
     <Compile Include="microsoft\bing\commerce\ingestion\__init__.py" />
     <Compile Include="microsoft\bing\commerce\__init__.py" />
     <Compile Include="microsoft\bing\__init__.py" />
+    <Compile Include="microsoft\CustomizationSample.py" />
     <Compile Include="microsoft\__init__.py" />
     <Compile Include="test\test_ingestion.py" />
     <Compile Include="test\__init__.py">

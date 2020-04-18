@@ -1,8 +1,8 @@
-subscription_key = 'access_token'
-tenantId='tenant'
-indexId='IndexId'
-instanceId='BlackFridaySettings'
-ruleId='ruleId'
+subscription_key = 'Access Token'
+tenantId='Tenant ID'
+indexId='Index ID'
+instanceId='blackfridaySetting'
+ruleId='rule'
 synonymId='synonymsId'
 redirectId='redirectID'
 
@@ -43,18 +43,18 @@ def GetAllRule():
     search_results = response.json()
 
 def GetRule():
-    search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rules/{0}/indexes/{1}?rule={2}&searchinstanceid={3}'
+    search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rule/{0}/indexes/{1}?rule={2}&searchinstanceid={3}'
     url=search_url.format(tenantId,indexId,ruleId,instanceId)
     headers = {'Authorization':'Bearer '+ subscription_key}
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers,verify=False)
     response.raise_for_status()
     search_results = response.json()
 
 def DeleteRule():
-    search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rules/{0}/indexes/{1}?rule={2}&searchinstanceid={3}'
+    search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rule/{0}/indexes/{1}?rule={2}&searchinstanceid={3}'
     url=search_url.format(tenantId,indexId,ruleId,instanceId)
     headers = {'Authorization':'Bearer '+ subscription_key}
-    response = requests.delete(url, headers=headers)
+    response = requests.delete(url, headers=headers,verify=False)
     response.raise_for_status()
     search_results = response.json()
 
@@ -136,5 +136,5 @@ def CreateUpdateARulePost():
               'StartTimeUtc':'20200101040000',
               'EndTimeUtc':'20201231180000'}
     json_data=json.dumps(request)
-    response=requests.post(url,data=json_data,headers=headers, verify=False)
+    response=requests.post(url,data=json_data,headers=headers)
     response.raise_for_status()
