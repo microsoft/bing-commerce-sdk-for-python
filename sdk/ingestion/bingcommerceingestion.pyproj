@@ -36,6 +36,7 @@
     <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="microsoft\AutoSuggestSample.py" />
     <Compile Include="microsoft\bing\commerce\ingestion\bing_commerce_ingestion.py" />
     <Compile Include="microsoft\bing\commerce\ingestion\models\bing_commerce_ingestion_enums.py" />
     <Compile Include="microsoft\bing\commerce\ingestion\models\index.py" />
@@ -70,6 +71,7 @@
     <Compile Include="microsoft\bing\commerce\__init__.py" />
     <Compile Include="microsoft\bing\__init__.py" />
     <Compile Include="microsoft\CustomizationSample.py" />
+    <Compile Include="microsoft\TransformationScriptManagementApi.py" />
     <Compile Include="microsoft\__init__.py" />
     <Compile Include="test\test_ingestion.py" />
     <Compile Include="test\__init__.py">

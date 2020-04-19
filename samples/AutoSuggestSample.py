@@ -30,7 +30,7 @@ def GetIndexAsync():
 def Add_UpdateIndex():
     search_url = 'https://commerce.bing.com/api/autosuggestauthoring/v1/{0}/indexes/{1}'
     url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
     body={'Enabled':False}
     json_data = json.dumps(body)
     response=requests.put(url,body,headers=headers)
@@ -60,7 +60,7 @@ def CreateBlockedSuggestionsAsync():
     suggs.append(p2)
     search_url = 'https://commerce.bing.com/api/autosuggestauthoring/v1/{0}/indexes/{1}/blocking'
     url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
     body={'BlockedSuggestions':suggs}
     json_data = json.dumps(body)
     addBlockedSuggestionsResponse = requests.post(url, json_data, headers=headers)
@@ -72,7 +72,7 @@ def UpdateBlockdSuggestionsAsync():
     suggs.append(p1)
     search_url = 'https://commerce.bing.com/api/autosuggestauthoring/v1/{0}/indexes/{1}/blocking'
     url=search_url.format(tenantId,indexId)
-    headers = {'Authorization':'Bearer '+ subscription_key}
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
     body={'BlockedSuggestions':suggs}
     json_data = json.dumps(body)
     addBlockedSuggestionsResponse = requests.put(search_url, data=json_data, headers= headers)
