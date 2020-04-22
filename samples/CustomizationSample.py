@@ -2,7 +2,7 @@ subscription_key = 'Access Token'
 tenantId='Tenant ID'
 indexId='Index ID'
 instanceId='blackfridaySetting'
-ruleId='rule'
+rule='rule'
 synonymId='synonymsId'
 redirectId='redirectID'
 
@@ -44,7 +44,7 @@ def GetAllRule():
 
 def GetRule():
     search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rule/{0}/indexes/{1}?rule={2}&searchinstanceid={3}'
-    url=search_url.format(tenantId,indexId,ruleId,instanceId)
+    url=search_url.format(tenantId,indexId,rule,instanceId)
     headers = {'Authorization':'Bearer '+ subscription_key}
     response = requests.get(url, headers=headers,verify=False)
     response.raise_for_status()
@@ -52,7 +52,7 @@ def GetRule():
 
 def DeleteRule():
     search_url = 'https://commerce.bing.com/api/customization/v1/businessrules/rule/{0}/indexes/{1}?rule={2}&searchinstanceid={3}'
-    url=search_url.format(tenantId,indexId,ruleId,instanceId)
+    url=search_url.format(tenantId,indexId,rule,instanceId)
     headers = {'Authorization':'Bearer '+ subscription_key}
     response = requests.delete(url, headers=headers,verify=False)
     response.raise_for_status()
