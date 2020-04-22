@@ -3,7 +3,7 @@ tenantId='Tenant ID'
 indexId='Index ID'
 instanceId='blackfridaySetting'
 rule='rule'
-synonymId='synonymsId'
+synonymId='synonymId'
 redirectId='redirectID'
 
 import requests
