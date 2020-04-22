@@ -12,6 +12,8 @@ def MatchAll():
     tenant_id = os.environ['SEARCH_TENANT']
     index_id = os.environ['SEARCH_INDEX']
     
+    #Constructs the Request Query.
+    #Specify list of fields to return
     request = CommerceSearchPostRequest(
         query = RequestQuery(match_all = 'diamond'),
         items = RequestItems(select = ['_itemId', 'name']))
@@ -22,8 +24,12 @@ def MatchAll():
         for item in response.items.value:
             print(item.item_id)
             print(item.fields['name'])
-            # Iterate Through Items to retrive selected Items
 
+#During the ingestion process of your catalog, you defined specific fields to make searchable.
+#Bing exposes these fields for matching operations. 
+#For more information, see the Bing Retail Search Ingestion API guide.
+#Matching enables you to define specific fields to query. 
+#The default matchAll or Match type matches against all searchable fields
 def MatchingSpecificFields():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -41,9 +47,9 @@ def MatchingSpecificFields():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
-            # Iterate Through Items to retrive selected Items
 
-
+#Filtering is a non-ranking type of query with the single purpose of excluding items from query results.
+#It answers the question of exclusion with various operators such as lesser than, greater than, equality etc
 def Filter():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -65,9 +71,10 @@ def Filter():
         for item in response.items.value:
             print(item.item_id)
             print(item.fields['title'])
-            # Iterate Through Items to retrive selected Items
 
-
+#Filtering is a non-ranking type of query with the single purpose of excluding items from query results.
+#The following example shows a filter condition block.
+#It answers the question of exclusion with various operators such as lesser than, greater than, equality etc
 def FilterConditionBlock():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -89,8 +96,10 @@ def FilterConditionBlock():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
-            # Iterate Through Items to retrive selected Items
 
+#Faceting is a search technique that breaks up search results into multiple categories,
+#often showing the counts of each one. 
+#Faceting with Range interval allows faceting on a user defined interval
 def FacetingWithRangeInterval():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -113,8 +122,10 @@ def FacetingWithRangeInterval():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['name'])
-            # Iterate Through Items to retrive selected Items
 
+#Faceting is a search technique that breaks up search results into multiple categories,
+#often showing the counts of each one. 
+#Faceting with Range interval allows faceting on a user defined interval
 def DiscoverFacetsExclude():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -136,9 +147,12 @@ def DiscoverFacetsExclude():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.item_id)
-            # Iterate Through Items to retrive selected Items
 
-def Faceting():
+#Faceting is a search technique that breaks up search results into multiple categories,
+#often showing the counts of each one. 
+#The following example shows a request for discover facets with the category facet pinned to the top position
+#of the list of discovered facets.
+def DiscoverFacetsPin():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
     tenant_id = os.environ['SEARCH_TENANT']
@@ -161,9 +175,10 @@ def Faceting():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.item_id)
-            # Iterate Through Items to retrive selected Items
 
-
+#By default, Bing sorts the list of items by best match.
+#As an alternative, you can include the sortBy query parameter in a GET request to sort by a specific item field.
+#Possible values are asc (ascending) and desc (descending).
 def Sorting():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -182,8 +197,10 @@ def Sorting():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
-            # Iterate Through Items to retrive selected Items
 
+#By default, Bing returns 24 items per request. 
+#To change this number, use the top query parameter to specify a number result of results per request.
+# There is no limit on the page size, but maximum of 1000 results can be obtained.       
 def Paging():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -202,9 +219,11 @@ def Paging():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
-            # Iterate Through Items to retrive selected Items
 
-
+#By default, Bing returns 24 items per request.
+# To change this number, use the top query parameter to s
+#specify a number resul of results per request. 
+#There is no limit on the page size, but maximum of 1000 results can be obtained.      
 def GetPaging():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -222,8 +241,11 @@ def GetPaging():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
-           # Iterate Through Items to retrive selected Items
 
+#GET requests can search an index using only URL parameters.
+#Only limited request options are available. 
+#GET requests will always do simple item search and support
+#only a default facet discovery aggregation.
 def GetSearch():
     creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
     client = BingCommerceSearch(creds)
@@ -240,4 +262,3 @@ def GetSearch():
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
-            # Iterate Through Items to retrive selected Items
