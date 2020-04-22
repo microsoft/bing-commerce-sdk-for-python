@@ -4,14 +4,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8ff65161-ed48-4d42-9716-1780b07069e3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>microsoft\CustomizationSample.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>bingcommerceingestion</Name>
     <RootNamespace>microsoft.bing.commerce.ingestion</RootNamespace>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>
+    </InterpreterId>
     <TestFramework>unittest</TestFramework>
     <UnitTestPattern>test*.py</UnitTestPattern>
     <UnitTestRootDirectory>.\test</UnitTestRootDirectory>
@@ -36,7 +38,6 @@
     <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="microsoft\AutoSuggestSample.py" />
     <Compile Include="microsoft\bing\commerce\ingestion\bing_commerce_ingestion.py" />
     <Compile Include="microsoft\bing\commerce\ingestion\models\bing_commerce_ingestion_enums.py" />
     <Compile Include="microsoft\bing\commerce\ingestion\models\index.py" />
@@ -70,24 +71,11 @@
     <Compile Include="microsoft\bing\commerce\ingestion\__init__.py" />
     <Compile Include="microsoft\bing\commerce\__init__.py" />
     <Compile Include="microsoft\bing\__init__.py" />
-    <Compile Include="microsoft\CustomizationSample.py" />
-    <Compile Include="microsoft\TransformationScriptManagementApi.py" />
     <Compile Include="microsoft\__init__.py" />
     <Compile Include="test\test_ingestion.py" />
     <Compile Include="test\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="env\">
-      <Id>env</Id>
-      <Version>3.7</Version>
-      <Description>env (Python 3.7 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Target Name="BeforeBuild">
