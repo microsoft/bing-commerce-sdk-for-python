@@ -4,7 +4,7 @@ indexId='Index ID'
 instanceId='blackfridaySetting'
 rule='rule'
 synonymId='synonymId'
-redirectId='redirectID'
+redirectId='RedirectId'
 
 import requests
 import json
