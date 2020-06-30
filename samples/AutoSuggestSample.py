@@ -36,12 +36,14 @@ def GetIndexAsync():
 #The indexId and tenantId are specified in the URL,
 #whereas the body must be of JSON type with two optional fields specifying 
 #whether the autosuggest service is enabled for this index, 
-#and what fields can be used as custom filters.     
+#and what fields can be used as custom filters.    
 def Add_UpdateIndex():
     search_url = 'https://commerce.bing.com/api/autosuggestauthoring/v1/{0}/indexes/{1}'
     url=search_url.format(tenantId,indexId)
     headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
-    body={'Enabled':False}
+    body={'Enabled':True,
+          'customFilters':['Locale','AverageRatingCountOverall','BasePrice'],
+          'customPostFilters':['Locale','AverageRatingCountOverall','BasePrice','IsMasterProduct','ProductReleaseDate']}
     json_data = json.dumps(body)
     response=requests.put(url,body,headers=headers)
     response.raise_for_status()
@@ -93,6 +95,16 @@ def UpdateBlockdSuggestionsAsync():
     headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
     body={'BlockedSuggestions':suggs}
     json_data = json.dumps(body)
-    addBlockedSuggestionsResponse = requests.put(search_url, data=json_data, headers= headers)
+    addBlockedSuggestionsResponse = requests.put(url, data=json_data, headers= headers)
     addBlockedSuggestionsResponse.raise_for_status()
+
+def DeleteBlockdSuggestions():
+    search_url = 'https://commerce.bing.com/api/autosuggestauthoring/v1/{0}/indexes/{1}/blocking'
+    url=search_url.format(tenantId,indexId)
+    headers = {'Authorization':'Bearer '+ subscription_key}
+    body={'ids':'Ids to be deleted'}
+    json_data = json.dumps(body)
+    response = requests.delete(url,data=json_data, headers=headers)
+    response.raise_for_status()
+    search_results = response.json()
 
