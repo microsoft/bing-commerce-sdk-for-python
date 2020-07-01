@@ -3,6 +3,7 @@ from microsoft.bing.commerce.search import BingCommerceSearch
 from microsoft.bing.commerce.search.models import CommerceSearchPostRequest, RequestQuery, RequestItems,RequestBingMatchStreams
 from  microsoft.bing.commerce.search.models import ConditionBase,EquivalenceConditionBase,EquivalenceOperator
 from microsoft.bing.commerce.search.models import ConditionBlock,LogicalOperator,StringCondition, RequestAggregationBase,RequestFacet,RequestRangeFacet,RequestDiscoverFacets
+from microsoft.bing.commerce.search.models import BoostExpression
 import microsoft.bing.commerce.search.operations
 from msrest.authentication import BasicTokenAuthentication
 
@@ -259,6 +260,23 @@ def GetSearch():
                                 orderby=None,
                                 top= 20,
                                 skip= 10)
+    if response.items.total_estimated_matches > 0:
+        for item in response.items.value:
+            print(item.fields['title'])
+
+def BoostingAndBurrying():
+    creds = BasicTokenAuthentication({ 'access_token': os.environ['SEARCH_TOKEN'] })
+    client = BingCommerceSearch(creds)
+    tenant_id = os.environ['SEARCH_TENANT']
+    index_id = os.environ['SEARCH_INDEX']
+    request = CommerceSearchPostRequest(
+        query = RequestQuery(
+            MatchAll='laptop',
+            boosts=[BoostExpression(boost=100,condition=StringCondition(field='brand',value='Microsoft')),
+                    BoostExpression(boost=-5,condition=StringCondition(field='brand',value='Northwind'))],
+            items = RequestItems(select = ['_score', 'brand', 'title'],top=10)))
+
+    response = client.search.post(request, tenant_id, index_id)
     if response.items.total_estimated_matches > 0:
         for item in response.items.value:
             print(item.fields['title'])
