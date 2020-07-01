@@ -146,4 +146,13 @@ def PushCatalogData(self):
                                            notransform=False)
 
     push_status = client.push_data_status(self.TENANT_ID, index_id, push_response.update_id)
-        
+
+
+def GetIngestionStatus(self):
+    creds = BasicTokenAuthentication({ 'access_token': os.environ['INGEST_TOKEN'] })
+    client = BingCommerceIngestion(creds)
+    index_id = ensure_index(client, self.TENANT_ID, query_parameters)
+    push_response = client.push_data_update('Test Content', self.TENANT_ID, index_id,
+                                           notransform=False)
+
+    push_status = client.push_data_status(self.TENANT_ID, index_id, push_response.update_id)
