@@ -1,8 +1,8 @@
 import requests
 import json
 
-subscription_key = 'YOUR-SUBSCRIPTION-KEY'
-tenantId='tenantID'
+subscription_key = 'Your Access Token'
+tenantId='tenantId'
 indexId='indexId'
 instanceId='BlackFridaySettings'
 
@@ -107,4 +107,29 @@ def DeleteBlockdSuggestions():
     response = requests.delete(url,data=json_data, headers=headers)
     response.raise_for_status()
     search_results = response.json()
+
+def GetCondition(type,field,value,op=None):
+      dict={'_type':type,
+            'field':field,
+            'value':value}
+      if op!=None:
+          dict.update({'operator':op})
+      return dict
+
+def Post_request():
+    search_url = 'https://commerce.bing.com/api/autosuggestauthoring/v1/{0}/indexes/{1}/blocking'
+    url=search_url.format(tenantId,indexId)
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
+    body={'Q':'a',
+          'postFilters':{'_type':'ConditionBlock',
+                         'Conditions':[GetCondition('StringCondition', 'Locale', 'en-us', 'Eq'),
+                         {'_type':'ConditionBlock',
+                         'Conditions':[GetCondition('BoolCondition', 'IsMasterProduct', True, 'Eq'),
+                                       GetCondition('NumericCondition', 'BasePrice', 80, 'Ge')], 'Operator':'And'}],
+                         'Operator':'And'
+                         }               
+          }
+    json_data = json.dumps(body)
+    response = requests.post(url, data=json_data, headers= headers)
+    response.raise_for_status()
 
