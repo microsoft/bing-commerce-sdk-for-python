@@ -69,7 +69,7 @@ def CreateOrUpdateAlert():
     response=requests.put(url, data=json_data, headers= headers)
     response.raise_for_status()
 
-def DeleteAlertGroup():
+def DeleteAlert():
     search_url = 'https://commerce.bing.com/api/devops/v1/{0}/indexes/{1}/alerts/{2}'
     url=search_url.format(tenantId,indexId,alertId)
     headers = {'Authorization':'Bearer '+ subscription_key}
