@@ -83,5 +83,5 @@ def RefreshTokenAPIRequest():
     headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/x-www-form-urlencoded'}
     request = {'refresh_token': 'REFRESH TOKEN'}
     json_data = json.dumps(request)
-    response=requests.put(url, data=json_data, headers= headers)
+    response=requests.post(url, data=json_data, headers= headers)
     response.raise_for_status()
