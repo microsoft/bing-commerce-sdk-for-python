@@ -76,3 +76,12 @@ def DeleteAlert():
     response = requests.delete(url, headers=headers)
     response.raise_for_status()
     search_results = response.json()
+
+def RefreshTokenAPIRequest():
+    search_url = 'https://commerce.bing.com/api/admin/v1/tenants/{0}/refresh-token'
+    url=search_url.format(tenantId)
+    headers = {'Authorization':'Bearer '+ subscription_key,'Content-type':'application/json'}
+    request = {'refresh_token': 'REFRESH TOKEN'}
+    json_data = json.dumps(request)
+    response=requests.put(url, data=json_data, headers= headers)
+    response.raise_for_status()
